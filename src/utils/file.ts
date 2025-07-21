@@ -3,6 +3,7 @@ import * as path from "path";
 import { replaceTemplateVariables } from "./template";
 import { Template } from "@/interface";
 import * as vscode from "vscode";
+import { log } from "@/channel";
 
 /**
  * 在目标目录下批量生成文件
@@ -14,13 +15,12 @@ export async function createFilesFromTemplate(
   template: Template,
   variables: Record<string, string>
 ): Promise<void> {
-  console.log("🚀 liu123 ~ targetDir:", targetDir);
-  // 检查 targetDir 是否是文件夹
   const isDir = fs.statSync(targetDir).isDirectory();
-  console.log("🚀 liu123 ~ isDir:", isDir);
+  log(`🚀 liu123 ~ isDir: ${isDir}`);
 
   if (template.type === "file") {
     const pathname = isDir ? targetDir : path.dirname(targetDir);
+    log(`🚀 liu123 ~ pathname: ${pathname}`);
     createFile(pathname, template, variables);
     return;
   }
@@ -32,6 +32,7 @@ export async function createFilesFromTemplate(
       return;
     }
 
+    log(`🚀 liu123 ~ targetDir: ${targetDir}`);
     createFolder(targetDir, template, variables);
     return;
   }
@@ -43,6 +44,9 @@ function createFile(
   variables: Record<string, string>
 ) {
   const filesToCreate = replaceTemplateVariables(template.files, variables);
+  log(`🚀 liu123 ~ filesToCreate: ${JSON.stringify(filesToCreate, null, 2)}`);
+  log(`🚀 liu123 ~ targetDir: ${targetDir}`);
+  log(`🚀 liu123 ~ variables: ${JSON.stringify(variables, null, 2)}`);
   for (const file of filesToCreate) {
     const filePath = path.join(targetDir, file.name);
     // 若父目录不存在则递归创建

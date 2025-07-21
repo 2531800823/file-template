@@ -10,6 +10,7 @@ export async function editTemplateConfig() {
       return;
     }
     const filePath = await getPathName();
+    console.log("🚀 liu123 ~ filePath:", filePath)
 
     // 打开模板配置文件
     const doc = await vscode.workspace.openTextDocument(filePath);
