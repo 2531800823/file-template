@@ -1,0 +1,25 @@
+# file-template 插件开发规则
+
+## 项目结构
+- 插件主入口：[src/extension.ts](mdc:src/extension.ts)
+- 工具函数目录：[src/utils/](mdc:src/utils/)
+- 内置模板目录（可选）：[src/templates/](mdc:src/templates/)
+- 插件声明、菜单注册、命令注册等在 [package.json](mdc:package.json)
+
+## 主要功能点
+- 右键文件树，弹出“一键创建模板”菜单项，触发模板生成命令
+- 本地模板配置文件约定为 `.vscode/file-templates.json`，支持多模板、多文件/多级目录结构
+- 模板内容支持变量（如 `${filename}`），生成时自动替换
+- 生成文件/文件夹时，需处理已存在情况（覆盖、跳过或提示）
+- 交互流程包括模板选择、变量输入、操作结果提示
+
+## 开发注意事项
+- 保证代码性能、可读性、可维护性
+- 重要函数、复杂逻辑需添加详细 JSDoc 注释
+- 关注跨平台兼容性（Windows、macOS、Linux）
+- 变量替换、文件操作等通用逻辑建议抽离为工具函数
+- 保持 README.md 与实际功能同步，便于维护
+description:
+globs:
+alwaysApply: false
+---
