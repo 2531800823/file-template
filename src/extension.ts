@@ -1,26 +1,40 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from 'vscode';
+import * as vscode from "vscode";
+import { getPathName } from "./config/getConfig";
+import { createTemplate } from "./command/createTemplate";
+import { editTemplateConfig } from "./command/editTemplateConfig";
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
+/**
+ * 插件激活时调用
+ * @param context vscode 扩展上下文
+ */
+export async function activate(context: vscode.ExtensionContext) {
+  try {
+    const filePath = await getPathName();
+    require(filePath);
+    // 添加一个提示框
+    vscode.window.showInformationMessage("file-template activate");
+  } catch (error) {
+    console.error("file-template 激活失败:", error);
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "liu-snippets" is now active!');
+    vscode.window.showErrorMessage(`file-template 激活失败: ${error}`);
+    return;
+  }
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('liu-snippets.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from liu-snippets!');
-	});
+  const createTemplateCommand = vscode.commands.registerCommand(
+    "file-template.createTemplate",
+    createTemplate
+  );
 
-	context.subscriptions.push(disposable);
+  const editTemplateConfigCommand = vscode.commands.registerCommand(
+    "file-template.editTemplateConfig",
+    editTemplateConfig
+  );
+
+  context.subscriptions.push(createTemplateCommand);
+  context.subscriptions.push(editTemplateConfigCommand);
 }
 
-// This method is called when your extension is deactivated
+/**
+ * 插件停用时调用
+ */
 export function deactivate() {}

@@ -43,11 +43,11 @@ async function main() {
   });
   if (watch) {
     await ctx.watch();
-    await moveFile('src/snippets.js', 'dist/snippets.js');
+    await moveFile('src/file-template-config.json', 'dist/file-template-config.json');
   } else {
     await ctx.rebuild();
     // 移动文件到 dist
-    await moveFile('src/snippets.js', 'dist/snippets.js');
+    await moveFile('src/file-template-config.json', 'dist/file-template-config.json');
     await ctx.dispose();
   }
 }

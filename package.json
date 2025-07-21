@@ -7,17 +7,52 @@
   "engines": {
     "vscode": "^1.89.0"
   },
-  "categories": ["Other"],
-  "activationEvents": ["*"],
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*",
+    "onCommand:file-template.createTemplate",
+    "onCommand:file-template.editTemplateConfig"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "file-template.openConfigFile",
-        "title": "%cmd.openConfig%",
-        "category": "file-template"
+        "command": "file-template.createTemplate",
+        "title": "使用模板生成文件",
+        "category": "文件模板"
+      },
+      {
+        "command": "file-template.editTemplateConfig",
+        "title": "编辑模板配置",
+        "category": "文件模板"
       }
-    ]
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "file-template.createTemplate",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        },
+        {
+          "command": "file-template.createTemplate",
+          "when": "!explorerResourceIsFolder",
+          "group": "navigation"
+        },
+        {
+          "command": "file-template.editTemplateConfig",
+          "when": "explorerResourceIsFolder",
+          "group": "navigation"
+        },
+        {
+          "command": "file-template.editTemplateConfig",
+          "when": "!explorerResourceIsFolder",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run package",

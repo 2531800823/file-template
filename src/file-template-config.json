@@ -1,0 +1,41 @@
+[
+  {
+    "name": "React 组件文件",
+    "description": "创建一个基础 React 组件",
+    "type": "file",
+    "params": ["filename", "name"],
+    "files": [
+      {
+        "name": "${filename}.tsx",
+        "content": [
+          "import React from 'react';",
+          "export default function ${filename}-${name}() {",
+          "  return <div>${filename}-${name}</div>;",
+          "}"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "React 组件目录",
+    "description": "创建一个基础 React 组件",
+    "type": "folder",
+    "params": ["filename"],
+    "files": [
+      {
+        "name": "${filename}.tsx",
+        "content": [
+          "import React from 'react';",
+          "export default function ${filename}() {",
+          "  return <div>${filename}</div>;",
+          "}"
+        ]
+      },
+      {
+          "name": "index.ts",
+        "content": ["export * from './${filename}';"]
+      }
+    ]
+  }
+]
+
