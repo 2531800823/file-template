@@ -17,13 +17,13 @@
   "contributes": {
     "commands": [
       {
-        "command": "file-template.openTemplateConfig",
-        "title": "%cmd.openTemplateConfig%",
+        "command": "file-template.useTemplateConfig",
+        "title": "%cmd.useTemplateConfig%",
         "category": "file-template"
       },
       {
-        "command": "file-template.useTemplateConfig",
-        "title": "%cmd.useTemplateConfig%",
+        "command": "file-template.openTemplateConfig",
+        "title": "%cmd.openTemplateConfig%",
         "category": "file-template"
       },
       {
