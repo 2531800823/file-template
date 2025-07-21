@@ -5,14 +5,14 @@ import * as vscode from "vscode";
 import fs from "fs-extra";
 import { log } from "@/channel";
 
-export async function createTemplate(uri: vscode.Uri) {
+export async function useTemplateConfig(uri: vscode.Uri) {
   let fileTemplate: Template[];
 
   try {
     const filePath = await getPathName();
     const content = fs.readFileSync(filePath, "utf-8");
     fileTemplate = JSON.parse(content) as Template[];
-    log(`🚀 liu123 ~ fileTemplate: ${JSON.stringify(fileTemplate, null, 2)}`);
+    log(`🚀 liu123 ~ 模板配置文件: ${JSON.stringify(fileTemplate, null, 2)}`);
 
     // 1. 获取用户右键点击的目标路径
     const targetUri = uri || vscode.window.activeTextEditor?.document.uri;

@@ -1,4 +1,5 @@
 {
-  "cmd.openConfig": "打开文件配置",
-  "cmd.removeConfig": "删除文件配置"
+  "cmd.openTemplateConfig": "打开模板配置文件",
+  "cmd.useTemplateConfig": "使用模板配置文件",
+  "cmd.resetTemplateFile": "重置模板配置文件"
 }

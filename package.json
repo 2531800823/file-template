@@ -11,45 +11,48 @@
     "Other"
   ],
   "activationEvents": [
-    "*",
-    "onCommand:file-template.createTemplate",
-    "onCommand:file-template.editTemplateConfig"
+    "*"
   ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "file-template.createTemplate",
-        "title": "使用模板生成文件",
-        "category": "文件模板"
+        "command": "file-template.openTemplateConfig",
+        "title": "%cmd.openTemplateConfig%",
+        "category": "file-template"
       },
       {
-        "command": "file-template.editTemplateConfig",
-        "title": "编辑模板配置",
-        "category": "文件模板"
+        "command": "file-template.useTemplateConfig",
+        "title": "%cmd.useTemplateConfig%",
+        "category": "file-template"
+      },
+      {
+        "command": "file-template.resetTemplate",
+        "title": "%cmd.resetTemplateFile%",
+        "category": "file-template"
       }
     ],
     "menus": {
       "explorer/context": [
         {
-          "command": "file-template.createTemplate",
+          "command": "file-template.useTemplateConfig",
           "when": "explorerResourceIsFolder",
-          "group": "navigation"
+          "group": "1@1"
         },
         {
-          "command": "file-template.createTemplate",
+          "command": "file-template.useTemplateConfig",
           "when": "!explorerResourceIsFolder",
-          "group": "navigation"
+          "group": "1@1"
         },
         {
-          "command": "file-template.editTemplateConfig",
+          "command": "file-template.openTemplateConfig",
           "when": "explorerResourceIsFolder",
-          "group": "navigation"
+          "group": "1@1"
         },
         {
-          "command": "file-template.editTemplateConfig",
+          "command": "file-template.openTemplateConfig",
           "when": "!explorerResourceIsFolder",
-          "group": "navigation"
+          "group": "1@1"
         }
       ]
     }

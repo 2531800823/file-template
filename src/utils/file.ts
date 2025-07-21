@@ -16,11 +16,11 @@ export async function createFilesFromTemplate(
   variables: Record<string, string>
 ): Promise<void> {
   const isDir = fs.statSync(targetDir).isDirectory();
-  log(`🚀 liu123 ~ isDir: ${isDir}`);
+  log(`🚀 liu123 ~ 是否是文件夹: ${isDir}`);
 
   if (template.type === "file") {
     const pathname = isDir ? targetDir : path.dirname(targetDir);
-    log(`🚀 liu123 ~ pathname: ${pathname}`);
+    log(`🚀 liu123 ~ 当前文件夹路径: ${pathname}`);
     createFile(pathname, template, variables);
     return;
   }
@@ -32,7 +32,7 @@ export async function createFilesFromTemplate(
       return;
     }
 
-    log(`🚀 liu123 ~ targetDir: ${targetDir}`);
+    log(`🚀 liu123 ~ 当前文件夹路径: ${targetDir}`);
     createFolder(targetDir, template, variables);
     return;
   }
@@ -44,9 +44,11 @@ function createFile(
   variables: Record<string, string>
 ) {
   const filesToCreate = replaceTemplateVariables(template.files, variables);
-  log(`🚀 liu123 ~ filesToCreate: ${JSON.stringify(filesToCreate, null, 2)}`);
-  log(`🚀 liu123 ~ targetDir: ${targetDir}`);
-  log(`🚀 liu123 ~ variables: ${JSON.stringify(variables, null, 2)}`);
+  log(
+    `🚀 liu123 ~ 替换后的文件数组: ${JSON.stringify(filesToCreate, null, 2)}`
+  );
+  log(`🚀 liu123 ~ 当前文件夹路径: ${targetDir}`);
+  log(`🚀 liu123 ~ 变量: ${JSON.stringify(variables, null, 2)}`);
   for (const file of filesToCreate) {
     const filePath = path.join(targetDir, file.name);
     // 若父目录不存在则递归创建

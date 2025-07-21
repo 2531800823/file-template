@@ -1,4 +1,5 @@
 {
-  "cmd.openConfig": "Open Config file",
-  "cmd.removeConfig": "Remove Config file"
+  "cmd.openTemplateConfig": "Open Template File",
+  "cmd.useTemplateConfig": "use Template Config",
+  "cmd.resetTemplateFile": "Reset Template File"
 }

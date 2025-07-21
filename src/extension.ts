@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
 import { getPathName } from "./config/getConfig";
-import { createTemplate } from "./command/createTemplate";
-import { editTemplateConfig } from "./command/editTemplateConfig";
+import { useTemplateConfig } from "./command/useTemplateConfig";
+import { openTemplateConfig } from "./command/openTemplateConfig";
+import { resetTemplate } from "./command/resetTemplate";
 
 /**
  * 插件激活时调用
@@ -13,25 +14,31 @@ export async function activate(context: vscode.ExtensionContext) {
     require(filePath);
     // 添加一个提示框
     vscode.window.showInformationMessage("file-template activate");
+    
   } catch (error) {
     console.error("file-template 激活失败:", error);
-
     vscode.window.showErrorMessage(`file-template 激活失败: ${error}`);
     return;
   }
 
-  const createTemplateCommand = vscode.commands.registerCommand(
-    "file-template.createTemplate",
-    createTemplate
+  const useTemplateConfigCommand = vscode.commands.registerCommand(
+    "file-template.useTemplateConfig",
+    useTemplateConfig
   );
 
-  const editTemplateConfigCommand = vscode.commands.registerCommand(
-    "file-template.editTemplateConfig",
-    editTemplateConfig
+  const openTemplateConfigCommand = vscode.commands.registerCommand(
+    "file-template.openTemplateConfig",
+    openTemplateConfig
   );
 
-  context.subscriptions.push(createTemplateCommand);
-  context.subscriptions.push(editTemplateConfigCommand);
+  const reSetTemplateCommand = vscode.commands.registerCommand(
+    "file-template.resetTemplate",
+    resetTemplate
+  );
+
+  context.subscriptions.push(openTemplateConfigCommand);
+  context.subscriptions.push(useTemplateConfigCommand);
+  context.subscriptions.push(reSetTemplateCommand);
 }
 
 /**
